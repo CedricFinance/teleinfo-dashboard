@@ -4,5 +4,13 @@
   </head>
   <body>
     Hello world
+    <script src="/lib/socket.io-1.2.1.js"></script>
+    <script>
+      var socket = io.connect('http://localhost:3000');
+      socket.on('metrics', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+      });
+    </script>
   </body>
 </html>
