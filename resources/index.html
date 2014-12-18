@@ -3,12 +3,19 @@
   <head>
   </head>
   <body>
-    Hello world
+    <h1>Consommation électrique</h1>
+    <div>Heures Pleines <span id="heurespleines">?</span></div>
+    <div>Heures Creuses <span id="heurescreuses">?</span></div>
+    <div><span id="amperes">?</span> A</div>
+    <div><span id="watts">?</span> W</div>
     <script src="/lib/socket.io-1.2.1.js"></script>
     <script>
       var socket = io.connect('http://localhost:3000');
       socket.on('metrics', function (data) {
-        console.log(data);
+        document.getElementById("heurespleines").innerText = data.heurespleines;
+        document.getElementById("heurescreuses").innerText = data.heurescreuses;
+        document.getElementById("watts").innerText = data.watts;
+        document.getElementById("amperes").innerText = data.amperes;
         socket.emit('my other event', { my: 'data' });
       });
     </script>
