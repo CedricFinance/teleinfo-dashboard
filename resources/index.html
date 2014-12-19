@@ -4,14 +4,66 @@
   </head>
   <body>
     <h1>Consommation électrique</h1>
-    <div>Heures Pleines <span id="heurespleines">?</span></div>
-    <div>Heures Creuses <span id="heurescreuses">?</span></div>
-    <div><span id="amperes">?</span> A</div>
-    <div><span id="watts">?</span> W</div>
+    <table>
+      <tr>
+        <td>Heures Pleines</td>
+        <td style="text-align: right"><span id="heurespleines">?</span> Wh</td>
+        <td><span id="hp_graph"></span></td>
+      </tr>
+      <tr>
+        <td>Heures Creuses</td>
+        <td style="text-align: right"><span id="heurescreuses">?</span> Wh</td>
+        <td><span id="hc_graph"></span></td>
+      </tr>
+      <tr>
+        <td>Ampères</td>
+        <td style="text-align: right"><span id="amperes">?</span> A</td>
+        <td><span id="amps_graph"></span></td>
+      </tr>
+      <tr>
+        <td>Watts</td>
+        <td style="text-align: right"><span id="watts">?</span> W</td>
+        <td><span id="watts_graph"></span></td>
+      </tr>
+    </table>
+    <script src="/lib/jquery-1.8.2.min.js"></script>
+    <script src="/lib/jquery.sparkline.js"></script>
     <script src="/lib/socket.io-1.2.1.js"></script>
     <script>
+      function displayValues(values, elementSelector, unit) {
+        $(elementSelector).sparkline(values, { width: values.length * 2, tooltipSuffix: unit });
+      }
+
+      var maxLength = 40;
+      var previousHP = [];
+      var previousHC = [];
+      var previousAmps = [];
+      var previousWatts = [];
+
+      function updateGraphs() {
+        displayValues(previousHP, '#hp_graph', "Wh");
+        displayValues(previousHC, '#hc_graph', "Wh");
+        displayValues(previousAmps, '#amps_graph', "A");
+        displayValues(previousWatts, '#watts_graph', "W");
+      }
+      updateGraphs();
+
+      function push(array, value) {
+        array.push(value);
+        if (array.length > maxLength) {
+          array.splice(0, 1);
+        }
+      }
+
       var socket = io.connect('http://localhost:3000');
       socket.on('metrics', function (data) {
+        push(previousHP, data.heurespleines);
+        push(previousHC, data.heurescreuses);
+        push(previousAmps, data.amperes);
+        push(previousWatts, data.watts);
+
+        updateGraphs();
+
         document.getElementById("heurespleines").innerText = data.heurespleines;
         document.getElementById("heurescreuses").innerText = data.heurescreuses;
         document.getElementById("watts").innerText = data.watts;
