@@ -1,8 +1,5 @@
 FROM node:latest
 
-ENV ACTIVEMQ_USER subscriber
-ENV ACTIVEMQ_PASSWORD subscriber
-
 RUN useradd -m app
 
 USER app
@@ -15,5 +12,8 @@ ADD resources /home/app/resources
 ADD src /home/app/src
 
 EXPOSE 3000
+
+ENV ACTIVEMQ_USER subscriber
+ENV ACTIVEMQ_PASSWORD subscriber
 
 CMD DEBUG=* node src/app.js
