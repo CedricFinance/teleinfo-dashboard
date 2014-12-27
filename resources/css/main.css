@@ -52,3 +52,9 @@ header h1 {
   text-align: right;
   width: 80px;
 }
+
+.widevalue {
+  width: 189px;
+  display: inline-block;
+  text-align: center;
+}

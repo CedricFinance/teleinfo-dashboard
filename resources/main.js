@@ -1,3 +1,36 @@
+var app = angular.module('electricity-dashboard', {});
+
+app.controller("LiveMetricsCtrl", LiveMetricsCtrl);
+
+function LiveMetricsCtrl($scope) {
+  this.live = { price_period: "HP.." };
+  var ctrl = this;
+
+  var socket = io.connect('http://localhost:3000');
+  socket.on('metrics', function (data) {
+    $scope.$apply(function() {
+      ctrl.live = data;
+    })
+
+    push(previousHP, data.peak_hours_index);
+    push(previousHC, data.offpeak_hours_index);
+    push(previousAmps, data.amperes);
+    push(previousWatts, data.watts);
+
+    updateGraphs();
+
+    //socket.emit('my other event', { my: 'data' });
+  });
+}
+
+LiveMetricsCtrl.prototype.getPricingPeriodIcon = function() {
+  return { '': 'question-mark', 'HC..': 'moon', 'HP..': 'sun' }[this.live.pricing_period];
+}
+
+LiveMetricsCtrl.prototype.getPricingPeriodLabel = function() {
+  return { '': '', 'HC..': 'Heures Creuses', 'HP..': 'Heures Pleines' }[this.live.pricing_period];
+}
+
 function displayValues(values, elementSelector, unit) {
   $(elementSelector).sparkline(values, { width: values.length * 2, tooltipSuffix: unit });
 }
@@ -14,7 +47,6 @@ function updateGraphs() {
   displayValues(previousAmps, '#amps_graph', "A");
   displayValues(previousWatts, '#watts_graph', "W");
 }
-updateGraphs();
 
 function push(array, value) {
   array.push(value);
@@ -22,19 +54,3 @@ function push(array, value) {
     array.splice(0, 1);
   }
 }
-
-var socket = io.connect('http://localhost:3000');
-socket.on('metrics', function (data) {
-  push(previousHP, data.heurespleines);
-  push(previousHC, data.heurescreuses);
-  push(previousAmps, data.amperes);
-  push(previousWatts, data.watts);
-
-  updateGraphs();
-
-  document.getElementById("heurespleines").innerText = data.heurespleines;
-  document.getElementById("heurescreuses").innerText = data.heurescreuses;
-  document.getElementById("watts").innerText = data.watts;
-  document.getElementById("amperes").innerText = data.amperes;
-  socket.emit('my other event', { my: 'data' });
-});

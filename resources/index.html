@@ -1,16 +1,20 @@
 <!doctype html>
-<html>
+<html ng-app="electricity-dashboard">
   <head>
     <link rel="stylesheet" href="/css/main.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/css/open-iconic.css">
   </head>
   <body>
+    <script src="/lib/angular.js"></script>
     <header>
       <h1>Consommation électrique</h1>
     </header>
-    <div class="live"><span class="label">Heures Pleines</span><span id="heurespleines" class="value">?</span><span class="unit">Wh</span><span id="hp_graph" class="sparkline"></span></div>
-    <div class="live"><span class="label">Heures Creuses</span><span id="heurescreuses" class="value">?</span><span class="unit">Wh</span><span id="hc_graph" class="sparkline"></span></div>
-    <div class="live"><span class="label">Ampères</span><span id="amperes" class="value">?</span><span class="unit">A</span><span id="amps_graph" class="sparkline"></span></div>
-    <div class="live"><span class="label">Watts</span><span id="watts" class="value">?</span><span class="unit">W</span><span id="watts_graph" class="sparkline"></span></div>
+    <div ng-controller="LiveMetricsCtrl as metrics">
+      <div class="live"><span class="label">Période tarifaire</span><span class="widevalue" ng-cloak>{{ metrics.getPricingPeriodLabel() }} <span class="oi" style="font-size: smaller" data-glyph="{{ metrics.getPricingPeriodIcon() }}" title="icon name" aria-hidden="true"></span></span></div>
+      <div class="live"><span class="label">Heures Pleines</span><span id="heurespleines" class="value">{{ metrics.live.peak_hours_index }}</span><span class="unit">Wh</span><span id="hp_graph" class="sparkline"></span></div>
+      <div class="live"><span class="label">Heures Creuses</span><span id="heurescreuses" class="value">{{ metrics.live.offpeak_hours_index }}</span><span class="unit">Wh</span><span id="hc_graph" class="sparkline"></span></div>
+      <div class="live"><span class="label">Ampères</span><span id="amperes" class="value">{{ metrics.live.amperes }}</span><span class="unit">A</span><span id="amps_graph" class="sparkline"></span></div>
+      <div class="live"><span class="label">Watts</span><span id="watts" class="value">{{ metrics.live.watts }}</span><span class="unit">W</span><span id="watts_graph" class="sparkline"></span></div>
     </div>
     <script src="/lib/jquery-1.8.2.min.js"></script>
     <script src="/lib/jquery.sparkline.js"></script>
