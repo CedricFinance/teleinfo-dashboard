@@ -1,29 +1,32 @@
 <!doctype html>
 <html>
   <head>
+    <link rel="stylesheet" href="/css/main.css" type="text/css" media="screen" charset="utf-8">
   </head>
   <body>
-    <h1>Consommation électrique</h1>
+    <header>
+      <h1>Consommation électrique</h1>
+    </header>
     <table>
       <tr>
-        <td>Heures Pleines</td>
-        <td style="text-align: right"><span id="heurespleines">?</span> Wh</td>
-        <td><span id="hp_graph"></span></td>
+        <td class="label">Heures Pleines</td>
+        <td class="value"><span id="heurespleines">?</span><span class="unit">Wh</span></td>
+        <td><span id="hp_graph" class="sparkline"></span></td>
       </tr>
       <tr>
-        <td>Heures Creuses</td>
-        <td style="text-align: right"><span id="heurescreuses">?</span> Wh</td>
-        <td><span id="hc_graph"></span></td>
+        <td class="label">Heures Creuses</td>
+        <td class="value"><span id="heurescreuses">?</span><span class="unit">Wh</span></td>
+        <td><span id="hc_graph" class="sparkline"></span></td>
       </tr>
       <tr>
-        <td>Ampères</td>
-        <td style="text-align: right"><span id="amperes">?</span> A</td>
-        <td><span id="amps_graph"></span></td>
+        <td class="label">Ampères</td>
+        <td class="value"><span id="amperes">?</span><span class="unit">A</span></td>
+        <td><span id="amps_graph" class="sparkline"></span></td>
       </tr>
       <tr>
-        <td>Watts</td>
-        <td style="text-align: right"><span id="watts">?</span> W</td>
-        <td><span id="watts_graph"></span></td>
+        <td class="label">Watts</td>
+        <td class="value"><span id="watts">?</span><span class="unit">W</span></td>
+        <td><span id="watts_graph" class="sparkline"></span></td>
       </tr>
     </table>
     <script src="/lib/jquery-1.8.2.min.js"></script>
