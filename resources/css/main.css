@@ -24,7 +24,7 @@ header h1 {
 .live {
   border: 1px solid #e7e7e7;
   background-color: #f8f8f8;
-  width: 298px;
+  width: 302px;
   margin: 2px;
 }
 
@@ -44,7 +44,7 @@ header h1 {
 .label {
   display: inline-block;
   text-align: right;
-  width: 105px;
+  width: 109px;
 }
 
 .value {
@@ -54,7 +54,7 @@ header h1 {
 }
 
 .widevalue {
-  width: 189px;
+  width: 193px;
   display: inline-block;
   text-align: center;
 }
