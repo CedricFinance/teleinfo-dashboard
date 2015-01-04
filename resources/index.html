@@ -12,14 +12,33 @@
     </header>
     <div class="container-fluid">
       <div class="row">
-        <div id="livedata" class="col-lg-3" ng-controller="LiveMetricsCtrl as metrics">
-          <div class="live"><span class="plabel">Période tarifaire</span><span class="widevalue" ng-cloak>{{ metrics.getPricingPeriodLabel() }} <span class="oi" style="font-size: smaller" data-glyph="{{ metrics.getPricingPeriodIcon() }}" title="icon name" aria-hidden="true"></span></span></div>
-          <div class="live"><span class="plabel">Heures Pleines</span><span id="heurespleines" class="value">{{ metrics.live.peak_hours_index }}</span><span class="unit">Wh</span><span id="hp_graph" class="sparkline"></span></div>
-          <div class="live"><span class="plabel">Heures Creuses</span><span id="heurescreuses" class="value">{{ metrics.live.offpeak_hours_index }}</span><span class="unit">Wh</span><span id="hc_graph" class="sparkline"></span></div>
-          <div class="live"><span class="plabel">Ampères</span><span id="amperes" class="value">{{ metrics.live.amperes }}</span><span class="unit">A</span><span id="amps_graph" class="sparkline"></span></div>
-          <div class="live"><span class="plabel">Watts</span><span id="watts" class="value">{{ metrics.live.watts }}</span><span class="unit">W</span><span id="watts_graph" class="sparkline"></span></div>
+        <div id="livedata" class="col-xs-12 col-sm-5 col-md-4 col-lg-3" ng-controller="LiveMetricsCtrl as metrics">
+          <div class="row box col-xs-12 no_lr_margin">
+            <div class="col-xs-6 col-sm-4 col-md-4 r_align small_lr_padding">Période tarifaire</div>
+            <div class="col-xs-6 col-sm-8 col-md-8 c_align small_lr_padding" ng-cloak>{{ metrics.getPricingPeriodLabel() }} <span class="oi" style="font-size: smaller" data-glyph="{{ metrics.getPricingPeriodIcon() }}" title="icon name" aria-hidden="true"></span></div>
+          </div>
+          <div class="row col-xs-6 col-sm-12 box no_lr_margin">
+            <div class="col-xs-4 col-sm-4 col-md-4 r_align small_lr_padding">Heures Pleines</div>
+            <div id="heurespleines" class="col-xs-5 col-sm-5 col-md-5 r_align small_lr_padding">{{ metrics.live.peak_hours_index }}<span class="unit">Wh</span></div>
+            <div id="hp_graph" class="col-xs-3 col-sm-3 col-md-3 r_align no_lr_padding"></div>
+          </div>
+          <div class="row col-xs-6 col-sm-12 box no_lr_margin">
+            <div class="col-xs-4 col-sm-4 col-md-4 r_align small_lr_padding">Heures Creuses</div>
+            <div id="heurescreuses" class="col-xs-5 col-sm-5 col-md-5 r_align small_lr_padding">{{ metrics.live.offpeak_hours_index }}<span class="unit">Wh</span></div>
+            <div id="hc_graph" class="col-xs-3 col-sm-3 col-md-3 r_align no_lr_padding"></div>
+          </div>
+          <div class="row col-xs-6 col-sm-12 box no_lr_margin">
+            <div class="col-xs-4 col-sm-4 col-md-4 r_align small_lr_padding">Ampères</div>
+            <div id="heurescreuses" class="col-xs-5 col-sm-5 col-md-5 r_align small_lr_padding">{{ metrics.live.amperes }}<span class="unit">A</span></div>
+            <div id="amps_graph" class="col-xs-3 col-sm-3 col-md-3 r_align no_lr_padding"></div>
+          </div>
+          <div class="row col-xs-6 col-sm-12 box no_lr_margin">
+            <div class="col-xs-4 col-sm-4 col-md-4 r_align small_lr_padding">Watts</div>
+            <div id="heurescreuses" class="col-xs-5 col-sm-5 col-md-5 r_align small_lr_padding">{{ metrics.live.watts }}<span class="unit">W</span></div>
+            <div id="watts_graph" class="col-xs-3 col-sm-3 col-md-3 r_align no_lr_padding"></div>
+          </div>
         </div>
-        <div class="col-lg-9">
+        <div class="col-sm-7 col-md-8 col-lg-9">
           <div id="main_graph"></div>
         </div>
       </div>

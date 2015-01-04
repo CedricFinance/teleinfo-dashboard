@@ -46,5 +46,5 @@ LiveMetricsCtrl.prototype.getPricingPeriodLabel = function() {
 }
 
 function displayValues(values, elementSelector, unit) {
-  $(elementSelector).sparkline(values, { width: values.length * 2, tooltipSuffix: unit });
+  $(elementSelector).sparkline(values, { width: values.length * 2, tooltipSuffix: unit, height: 18 });
 }
