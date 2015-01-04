@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  padding: 30px 5px 5px 5px;
+  padding-top: 40px;
   color: #777;
 }
 
@@ -16,16 +16,18 @@ header {
 
 header h1 {
   margin: 1px;
-  font-size: 15pt;
+  font-size: 12pt;
   font-weight: inherit;
   text-align: center;
+  line-height: inherit;
 }
 
 .live {
   border: 1px solid #e7e7e7;
   background-color: #f8f8f8;
-  width: 302px;
   margin: 2px;
+  font-size: small;
+  line-height: initial;
 }
 
 .sparkline {
@@ -41,20 +43,29 @@ header h1 {
   display: inline-block;
 }
 
-.label {
+.plabel {
   display: inline-block;
   text-align: right;
-  width: 109px;
+  width: 119px;
 }
 
 .value {
   display: inline-block;
   text-align: right;
-  width: 80px;
+  width: 90px;
 }
 
 .widevalue {
-  width: 193px;
+  width: 202px;
   display: inline-block;
   text-align: center;
+}
+
+.live:first-child {
+  margin-top: 0;
+}
+
+#main_graph {
+  min-width: 310px;
+  height: 400px;
 }
