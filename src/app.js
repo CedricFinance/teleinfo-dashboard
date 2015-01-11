@@ -3,7 +3,6 @@ var serveStatic = require('serve-static');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-var Stomp = require('stomp-client');
 var config = require('./config');
 var activemq_connect = require('./activemq_connect');
 
