@@ -27,8 +27,6 @@ activemq_connect(config.activemq).then(function(client) {
 
 app.use(serveStatic('resources', {'index': ['index.html'] }));
 
-var metrics = { watts: 340, amperes: 1, heurescreuses: 10000000, heurespleines: 50000000 };
-
 server.listen(3000, function () {
   var host = server.address().address
   var port = server.address().port
